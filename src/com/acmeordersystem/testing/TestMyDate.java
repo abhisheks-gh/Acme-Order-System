@@ -16,7 +16,7 @@ public class TestMyDate{
 		date3.setDate((byte)4, (byte)21,1968);
 
 		// Non-valid date detection test.
-		// date3.setDate((byte)13, (byte)40, -1);
+		date3.setDate((byte)13, (byte)40, -1);
 
 		String str1 = date1.toString();
 		String str2 = date2.toString();

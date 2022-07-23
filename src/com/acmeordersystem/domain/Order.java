@@ -6,32 +6,30 @@ public class Order {
 
 	private MyDate orderDate;
 	private double orderAmount = 0.00;
-    private double discount = 0.00;	/** Discount offered as per the jobSize */
-    private int quantity;	/** Quantity of orders placed */
+
+	/** Discount offered as per the jobSize */
+    private double discount = 0.00;
+
+	/** Quantity of orders placed */
+    private int quantity;
     private char jobSize;
-    private double billingAmount;	/** Small ('S') / Medium ('M') / Large ('L') / Extra large ('X') */
+
+	/** Small ('S') / Medium ('M') / Large ('L') / Extra large ('X') */
+    private double billingAmount;
+
 	String customer;
 	String product;
 	public static double taxRate = 0.05;
 
-
-	// Getters
 	public MyDate getOrderDate() {
 		return orderDate;
 	}
 
+	public void setOrderDate(MyDate orderDate) { this.orderDate = orderDate; }
+
 	public double getOrderAmount() {
 		return orderAmount;
 	}
-
-	public String getCustomer() { return customer; }
-
-	public String getProduct() { return customer; }
-
-	public int getQuantity() { return quantity; }
-
-	// Setters
-	public void setOrderDate(MyDate orderDate) { this.orderDate = orderDate; }
 
 	public void setOrderAmount(double orderAmount) {
 		if (orderAmount > 0) { this.orderAmount = orderAmount; }
@@ -40,9 +38,15 @@ public class Order {
 		}
 	}
 
+	public String getCustomer() { return customer; }
+
 	public void setCustomer(String customer) { this.customer = customer; }
 
+	public String getProduct() { return customer; }
+
 	public void setProduct(String product) { this.product = product; }
+
+	public int getQuantity() { return quantity; }
 
 	public void setQuantity(int quantity) {
 		if (quantity > 0) {
@@ -68,7 +72,7 @@ public class Order {
 		return orderAmount * Order.taxRate;
 	}
 
-	public Order(MyDate d, double amt, String c, String p, int q){
+	public Order(MyDate d, double amt, String c, String p, int q) {
 		orderDate = d;
 		orderAmount = amt;
 		customer = c;
@@ -84,7 +88,7 @@ public class Order {
 		quantity = 1;
 	}
 
-	// sets a new tax rate
+	/** Sets new tax rate. */
 	public static void setTaxRate(double newRate) {
 		taxRate = newRate;
 	}

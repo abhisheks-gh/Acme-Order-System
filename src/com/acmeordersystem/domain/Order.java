@@ -14,9 +14,6 @@ public class Order {
     private int quantity;
     private char jobSize;
 
-	/** Small ('S') / Medium ('M') / Large ('L') / Extra large ('X') */
-    private double billingAmount;
-
 	String customer;
 	String product;
 	public static double taxRate = 0.05;
@@ -60,6 +57,9 @@ public class Order {
 
 	public static void taxRate(double newRate) { taxRate = newRate; }
 
+	public double getDiscount() { return discount; }
+
+	public void setDiscount(double discount) { this.discount = discount; }
 
 	/** Computes tax on an amount */
 	public static void computeTaxOn(double anAmount) {
@@ -111,6 +111,8 @@ public class Order {
 
 	/** Computes total billing amount */
 	public double computeTotal() {
+		double billingAmount;
+
 		if (orderAmount > 1500) {
 			// Tax is absorbed if orderAmount > $1500
 			billingAmount = orderAmount - discount;

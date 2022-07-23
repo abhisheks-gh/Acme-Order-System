@@ -4,33 +4,65 @@ import com.acmeordersystem.utils.MyDate;
 
 public class Order {
 
-	MyDate orderDate;
-	double orderAmount = 0.00;
-    /** Discount offered as per the jobSize */
-    double discount = 0.00;
-    /** Quantity of orders placed */
-    int quantity;
-    /** Small ('S') / Medium ('M') / Large ('L') / Extra large ('X') */
-    char jobSize;
-    double billingAmount;
-
+	private MyDate orderDate;
+	private double orderAmount = 0.00;
+    private double discount = 0.00;	/** Discount offered as per the jobSize */
+    private int quantity;	/** Quantity of orders placed */
+    private char jobSize;
+    private double billingAmount;	/** Small ('S') / Medium ('M') / Large ('L') / Extra large ('X') */
 	String customer;
 	String product;
-
-	// static initialization block
 	public static double taxRate = 0.05;
 
-	// sets a new tax rate
-	public static void setTaxRate(double newRate) {
-		taxRate = newRate;
+
+	// Getters
+	public MyDate getOrderDate() {
+		return orderDate;
 	}
 
-	// compute tax on an amount
+	public double getOrderAmount() {
+		return orderAmount;
+	}
+
+	public String getCustomer() { return customer; }
+
+	public String getProduct() { return customer; }
+
+	public int getQuantity() { return quantity; }
+
+	// Setters
+	public void setOrderDate(MyDate orderDate) { this.orderDate = orderDate; }
+
+	public void setOrderAmount(double orderAmount) {
+		if (orderAmount > 0) { this.orderAmount = orderAmount; }
+		else {
+			System.out.println("Attempting to set the orderAmount value to a value less than or equal to zero.");
+		}
+	}
+
+	public void setCustomer(String customer) { this.customer = customer; }
+
+	public void setProduct(String product) { this.product = product; }
+
+	public void setQuantity(int quantity) {
+		if (quantity > 0) {
+			this.quantity = quantity;
+		} else {
+			System.out.println("Attempting to set the quantity to a value less than or equal to zero.");
+		}
+	}
+
+	public static double getTaxRate() { return taxRate; }
+
+	public static void taxRate(double newRate) { taxRate = newRate; }
+
+
+	/** Computes tax on an amount */
 	public static void computeTaxOn(double anAmount) {
 		System.out.println("The tax for " + anAmount + " is: " + anAmount * Order.taxRate);
 	}
 
-	// compute tax for an order object
+	/** Computes tax for an order object */
 	public double computeTax() {
 		System.out.println("The tax for this order is: " + orderAmount * Order.taxRate);
 		return orderAmount * Order.taxRate;
@@ -52,6 +84,11 @@ public class Order {
 		quantity = 1;
 	}
 
+	// sets a new tax rate
+	public static void setTaxRate(double newRate) {
+		taxRate = newRate;
+	}
+
 	public String toString() {
         return quantity + " ea. " + product + " for " + customer;
 	}
@@ -59,15 +96,13 @@ public class Order {
 	// returns jobSize depending on the quantity of order
 	public char jobSize() {
 		if (quantity <= 25)
-			jobSize = 'S';							// Small
-		else if (quantity >= 26 && quantity <= 75)
-			jobSize = 'M';							// Medium
-		else if (quantity >= 76 && quantity <= 150)
-			jobSize = 'L';							// Large
-		else if (quantity > 150)
-			jobSize = 'X';							// Extra Large
+			jobSize = 'S';				// Small
+		else if (quantity <= 75)
+			jobSize = 'M';				// Medium
+		else if (quantity <= 150)
+			jobSize = 'L';				// Large
 
-		return jobSize; // (S / M / L / X)
+		return 'X'; 					// Extra Large
 	}
 
 	/** Computes total billing amount */

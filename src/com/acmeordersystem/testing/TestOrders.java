@@ -35,6 +35,8 @@ public class TestOrders {
 		System.out.println("The total bill for: " + anvil + " is " + anvil.computeTotal());
 		System.out.println("The total bill for: " + balloons + " is " + balloons.computeTotal());
 
+		// Non valid quantity detection test
+		balloons.setQuantity(-200);
 	}
 
 }

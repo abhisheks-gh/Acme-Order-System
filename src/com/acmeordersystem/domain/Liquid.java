@@ -1,13 +1,12 @@
 package com.acmeordersystem.domain;
 
-import com.acmeordersystem.domain.Good;
-
 public class Liquid extends Good {
     /** Radius of the liquid’s container */
     private double radius;
 
-    public Liquid(String name, int modelNumber, double height, UnitOfMeasureType uoM, boolean flammable, double wgtPerUofM, double radius) {
-        super(name, modelNumber, height, uoM, flammable, wgtPerUofM);
+    public Liquid(String name, int modelNumber, double height, unitOfMeasureType unitOfMeasure, boolean flammable, double weightPerUofM, double radius) {
+        // Constructor chaining
+        super(name, modelNumber, height, unitOfMeasure, flammable, weightPerUofM);
         this.radius = radius;
     }
 
@@ -18,5 +17,4 @@ public class Liquid extends Good {
     public void setRadius(double radius) {
         this.radius = radius;
     }
-
 }

@@ -1,7 +1,7 @@
 package com.acmeordersystem.domain;
 
 public class Liquid extends Good {
-    /** Radius of the liquid’s container */
+    /** Radius of the liquid container */
     private double radius;
 
     public Liquid(String name, int modelNumber, double height, unitOfMeasureType unitOfMeasure, boolean flammable, double weightPerUofM, double radius) {

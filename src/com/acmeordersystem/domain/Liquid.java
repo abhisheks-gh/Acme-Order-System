@@ -14,9 +14,7 @@ public class Liquid extends Good {
         return radius;
     }
 
-    public void setRadius(double radius) {
-        this.radius = radius;
-    }
+    public void setRadius(double radius) { this.radius = radius; }
 
     @Override
     public double volume() {

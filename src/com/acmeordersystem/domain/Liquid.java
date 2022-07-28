@@ -17,4 +17,14 @@ public class Liquid extends Good {
     public void setRadius(double radius) {
         this.radius = radius;
     }
+
+    @Override
+    public double volume() {
+        return Math.PI * radius * radius * getHeight();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " (liquid) " + volume() + " " + getUnitOfMeasure();
+    }
 }

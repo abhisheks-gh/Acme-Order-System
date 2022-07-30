@@ -1,27 +1,28 @@
 package com.acmeordersystem.domain;
 
+/** Contains descriptive fields of placed order and methods use to perform operations on them */
 public class Good {
-    public enum unitOfMeasureType { LITER, GALLON, CUBIC_METER, CUBIC_FEET }
+    public enum UnitOfMeasureType { LITER, GALLON, CUBIC_METER, CUBIC_FEET }
     private String name;
     private int modelNumber;
     private double height;
-    private unitOfMeasureType unitOfMeasure;
-    private boolean flammable;
+    private UnitOfMeasureType unitOfMeasure;
+    private boolean flammable = true;
     private double weightPerUofM;
 
+    /** No-args Constructor */
+    public Good() {
+
+    }
+
     /** Constructor */
-    public Good(String name, int modelNumber, double height, unitOfMeasureType unitOfMeasure, boolean flammable, double weightPerUofM) {
+    public Good(String name, int modelNumber, double height, UnitOfMeasureType unitOfMeasure, boolean flammable, double weightPerUofM) {
         this.name = name;
         this.modelNumber = modelNumber;
         this.height = height;
         this.unitOfMeasure = unitOfMeasure;
         this.flammable = flammable;
         this.weightPerUofM = weightPerUofM;
-    }
-
-    /** No-args Constructor */
-    public Good() {
-        this();
     }
 
     public String getName() {
@@ -48,11 +49,11 @@ public class Good {
         this.height = height;
     }
 
-    public unitOfMeasureType getUnitOfMeasure() {
+    public UnitOfMeasureType getUnitOfMeasure() {
         return unitOfMeasure;
     }
 
-    public void setUnitOfMeasure(unitOfMeasureType unitOfMeasure) {
+    public void setUnitOfMeasure(UnitOfMeasureType unitOfMeasure) {
         this.unitOfMeasure = unitOfMeasure;
     }
 
@@ -70,6 +71,20 @@ public class Good {
 
     public void setWeightPerUofM(double weightPerUofM) {
         this.weightPerUofM = weightPerUofM;
+    }
+
+    public String toString() {
+        return name + "-" + modelNumber;
+    }
+
+    /** For Generic good: A consumer product having no brand name or registered trademark */
+    public double volume() {
+        return 0.0;
+    }
+
+    /** weight = volume * weight per unit of measure */
+    public double weight() {
+        return volume() * weightPerUofM;
     }
 
 }

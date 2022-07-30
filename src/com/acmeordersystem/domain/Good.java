@@ -87,4 +87,12 @@ public class Good {
         return volume() * weightPerUofM;
     }
 
+    public final boolean canShipViaPostOffice() {
+        if (!flammable && weight() < 200) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

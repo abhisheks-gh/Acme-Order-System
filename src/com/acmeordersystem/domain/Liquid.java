@@ -4,7 +4,7 @@ public class Liquid extends Good {
     /** Radius of the liquid container */
     private double radius;
 
-    public Liquid(String name, int modelNumber, double height, unitOfMeasureType unitOfMeasure, boolean flammable,
+    public Liquid(String name, int modelNumber, double height, UnitOfMeasureType unitOfMeasure, boolean flammable,
                   double weightPerUofM, double radius) {
         // Constructor chaining
         super(name, modelNumber, height, unitOfMeasure, flammable, weightPerUofM);

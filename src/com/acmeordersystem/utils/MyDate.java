@@ -130,7 +130,7 @@ public class MyDate {
         }
     }
 
-    /** Sets day to 'day' to the next 'day' i.e. "tomorrow". */
+    /** Sets 'day' to the next 'day' i.e. "tomorrow". */
     public void tomorrow() {
         if (valid(day + 1, month, year)) {
             day++;

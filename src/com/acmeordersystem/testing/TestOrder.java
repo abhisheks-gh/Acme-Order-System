@@ -5,7 +5,7 @@ import com.acmeordersystem.domain.Order;
 import com.acmeordersystem.utils.MyDate;
 import com.acmeordersystem.domain.Solid;
 
-public class TestOrders {
+public class TestOrder {
 
 	/**
 	 * @param args

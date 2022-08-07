@@ -15,7 +15,7 @@ public class Order {
     private char jobSize;
 
 	String customer;
-	String product;
+	Good product;
 	public static double taxRate = 0.05;
 
 	public MyDate getOrderDate() {
@@ -39,9 +39,9 @@ public class Order {
 
 	public void setCustomer(String customer) { this.customer = customer; }
 
-	public String getProduct() { return customer; }
+	public Good getProduct() { return product; }
 
-	public void setProduct(String product) { this.product = product; }
+	public void setProduct(Good product) { this.product = product; }
 
 	public int getQuantity() { return quantity; }
 
@@ -72,20 +72,12 @@ public class Order {
 		return orderAmount * Order.taxRate;
 	}
 
-	public Order(MyDate d, double amt, String c, String p, int q) {
+	public Order(MyDate d, double amt, String c, Good p, int q) {
 		orderDate = d;
 		orderAmount = amt;
 		customer = c;
 		product = p;
 		quantity = q;
-	}
-
-	public Order(MyDate d, double amt, String c) {
-		orderDate = d;
-		orderAmount = amt;
-		customer = c;
-		product = "Anvil";
-		quantity = 1;
 	}
 
 	/** Sets new tax rate. */

@@ -75,7 +75,7 @@ public class MyDate {
     private boolean valid(int day, int month, int year) {
         boolean isValid = true;
         if (day > 31 || day < 1 || month > 12 || month < 1) {
-            System.out.println("\"Attempting to create a non-valid date: "  + month + "/" + day + "/" + year);
+            System.out.println("Attempting to create a non-valid date: "  + month + "/" + day + "/" + year);
             isValid = false;
         } else {
             switch (month) {

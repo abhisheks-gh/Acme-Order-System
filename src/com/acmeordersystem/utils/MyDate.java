@@ -9,7 +9,7 @@ package com.acmeordersystem.utils;
 public class MyDate {
     private byte day;
     private byte month;
-    private static short year;
+    private short year;
     private boolean leapYear = true;
 
     // getters
@@ -30,14 +30,14 @@ public class MyDate {
     // setters
     /** Sets day and also check if day is ok. */
     public void setDay(int day) {
-        if (valid(day, this.month, MyDate.year)) {
+        if (valid(day, this.month, this.year)) {
             this.day = (byte)day;
         }
     }
 
     /** Sets month and also check if month is ok. */
     public void setMonth(int month) {
-        if (valid(this.day, month, MyDate.year)) {
+        if (valid(this.day, month, this.year)) {
             this.month = (byte)month;
         }
     }
@@ -45,7 +45,7 @@ public class MyDate {
     /** Sets year and also check if year is ok. */
     public void setYear(short year) {
         if (valid(this.day, this.month, year)) {
-            MyDate.year = year;
+            this.year = year;
         }
     }
 
@@ -117,13 +117,13 @@ public class MyDate {
 
         MyDate leapYear = new MyDate();
 
-        for (year = 1752; year <= 2020; year++) {
+        for (int i = 1752; i <= 2020; i++) {
             // Leap years
-            if (year % 4 == 0 && year % 100 != 0) {
-                System.out.println("The year " + year + " is a leap year");
+            if (i % 4 == 0 && i % 100 != 0) {
+                System.out.println("The year " + i + " is a leap year");
 
-            } else if (year % 4 == 0 && year % 100 == 0 && year % 400 == 0) {
-                System.out.println("The year " + year + " is a leap year");
+            } else if (i % 4 == 0 && i % 100 == 0 && i % 400 == 0) {
+                System.out.println("The year " + i + " is a leap year");
             } else {
                 boolean leapYearResult = !(leapYear.isLeapYear());
             }
@@ -149,7 +149,7 @@ public class MyDate {
     public boolean equals(Object o) {
         if (o instanceof MyDate) {
             MyDate d = (MyDate) o;
-            if ((d.day == day) && (d.month == month) && (MyDate.year == year))
+            if ((d.day == day) && (d.month == month) && (d.year == year))
                 return true;
         }
         return false;

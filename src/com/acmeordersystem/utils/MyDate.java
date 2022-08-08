@@ -9,7 +9,7 @@ package com.acmeordersystem.utils;
 public class MyDate {
     private byte day;
     private byte month;
-    private static int year;
+    private static short year;
     private boolean leapYear = true;
 
     // getters
@@ -43,7 +43,7 @@ public class MyDate {
     }
 
     /** Sets year and also check if year is ok. */
-    public void setYear(int year) {
+    public void setYear(short year) {
         if (valid(this.day, this.month, year)) {
             MyDate.year = year;
         }
@@ -60,10 +60,10 @@ public class MyDate {
 
      * No-args constructor so that the default constructor of the class can be used. */
     public MyDate() {
-        this((byte)1, (byte)1, 1990); }  // Chained Constructors (sets date to a default date)
+        this((byte)1, (byte)1, (short)1990); }  // Chained Constructors (sets date to a default date)
 
     /** MyDate constructor */
-    public MyDate(byte m, byte d, int y) {
+    public MyDate(byte m, byte d, short y) {
         setDate(m, d, y);
     }
 
@@ -97,7 +97,7 @@ public class MyDate {
     }
 
     /** Resets 'date' */
-    public void setDate(byte m, byte d, int y) {
+    public void setDate(byte m, byte d, short y) {
         if (valid(m, d, y))
         month = m;
         day = d;
@@ -130,7 +130,7 @@ public class MyDate {
         }
     }
 
-    /** Sets 'day' to the next 'day' i.e. "tomorrow". */
+    /** Sets day to 'day' to the next 'day' i.e. "tomorrow". */
     public void tomorrow() {
         if (valid(day + 1, month, year)) {
             day++;
@@ -143,6 +143,16 @@ public class MyDate {
             month = 1;
             year++;
         }
+    }
+
+    // @Override
+    public boolean equals(Object o) {
+        if (o instanceof MyDate) {
+            MyDate d = (MyDate) o;
+            if ((d.day == day) && (d.month == month) && (MyDate.year == year))
+                return true;
+        }
+        return false;
     }
 
 }

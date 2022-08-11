@@ -1,6 +1,6 @@
 package com.acmeordersystem.domain;
 
-public class Service {
+public class Service implements Product {
     private String name;
     private int estimatedTaskDuration;
     private boolean timeAndMaterials;
@@ -13,6 +13,12 @@ public class Service {
 
     public void setEstimatedTaskDuration(int estimatedTaskDuration) {
         this.estimatedTaskDuration = estimatedTaskDuration;
+    }
+
+    public Service(String name, int estimatedTaskDuration, boolean timeAndMaterials) {
+        this.name = name;
+        this.estimatedTaskDuration = estimatedTaskDuration;
+        this.timeAndMaterials = timeAndMaterials;
     }
 
     public boolean isTimeAndMaterials() { return timeAndMaterials; }

@@ -1,7 +1,9 @@
 package com.acmeordersystem.domain;
 
-/** Contains descriptive fields of placed order and methods use to perform operations on them */
-public class Good {
+/** Contains descriptive fields of placed order and methods use to perform operations on them
+ * Template for the subclasses Solid and Liquid
+ * */
+public abstract class Good {
     public enum UnitOfMeasureType { LITER, GALLON, CUBIC_METER, CUBIC_FEET }
     private String name;
     private int modelNumber;
@@ -16,7 +18,8 @@ public class Good {
     }
 
     /** Constructor */
-    public Good(String name, int modelNumber, double height, UnitOfMeasureType unitOfMeasure, boolean flammable, double weightPerUofM) {
+    public Good(String name, int modelNumber, double height, UnitOfMeasureType unitOfMeasure, boolean flammable,
+                double weightPerUofM) {
         this.name = name;
         this.modelNumber = modelNumber;
         this.height = height;
@@ -78,9 +81,7 @@ public class Good {
     }
 
     /** For Generic good: A consumer product having no brand name or registered trademark */
-    public double volume() {
-        return 0.0;
-    }
+    public abstract double volume();
 
     /** weight = volume * weight per unit of measure */
     public double weight() {

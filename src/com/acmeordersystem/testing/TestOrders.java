@@ -4,6 +4,7 @@ import com.acmeordersystem.domain.Good;
 import com.acmeordersystem.domain.Order;
 import com.acmeordersystem.utils.MyDate;
 import com.acmeordersystem.domain.Solid;
+import com.acmeordersystem.domain.Service;
 
 public class TestOrders {
 
@@ -46,6 +47,12 @@ public class TestOrders {
 
 		// Non valid quantity detection test
 		balloons.setQuantity(-200);
+
+		MyDate date3 = new MyDate((byte) 4, (byte) 10, (short)2008);
+		Service s3 = new Service("Road Runner Eradication", 14, false);
+		Order birdEradication = new Order(date3, 20000, "Daffy Duck", s3, 1);
+		System.out.println("The total bill for: " + birdEradication + " is " + birdEradication.computeTotal());
+
 	}
 
 }

@@ -3,7 +3,7 @@ package com.acmeordersystem.domain;
 /** Contains descriptive fields of placed order and methods use to perform operations on them
  * Template for the subclasses Solid and Liquid
  * */
-public abstract class Good {
+public abstract class Good implements Product {
     public enum UnitOfMeasureType { LITER, GALLON, CUBIC_METER, CUBIC_FEET }
     private String name;
     private int modelNumber;
@@ -13,9 +13,7 @@ public abstract class Good {
     private double weightPerUofM;
 
     /** No-args Constructor */
-    public Good() {
-
-    }
+    public Good() { }
 
     /** Constructor */
     public Good(String name, int modelNumber, double height, UnitOfMeasureType unitOfMeasure, boolean flammable,

@@ -3,7 +3,6 @@ package com.acmeordersystem.domain;
 import com.acmeordersystem.utils.MyDate;
 
 public class Order {
-
 	private MyDate orderDate;
 	private double orderAmount = 0.00;
 
@@ -17,6 +16,8 @@ public class Order {
 	String customer;
 	Product product;
 	public static double taxRate = 0.05;
+
+	private static Rushable rushable;
 
 	public MyDate getOrderDate() {
 		return orderDate;
@@ -60,6 +61,10 @@ public class Order {
 	public double getDiscount() { return discount; }
 
 	public void setDiscount(double discount) { this.discount = discount; }
+
+	public static Rushable getRushable() { return rushable; }
+
+	public static void setRushable(Rushable rushable) { Order.rushable = rushable; }
 
 	/** Computes tax on an amount */
 	public static void computeTaxOn(double anAmount) {
@@ -127,6 +132,14 @@ public class Order {
 			discount = orderAmount * 0.03;	// discount of 3%
 
 		return discount;
+	}
+
+	public boolean isPriorityOrder() {
+		boolean priorityOrder = false;
+		if (rushable != null) {
+			priorityOrder = rushable.isRushable(orderDate, orderAmount);
+		}
+		return priorityOrder;
 	}
 
 }

@@ -6,6 +6,8 @@ import com.acmeordersystem.utils.MyDate;
 import com.acmeordersystem.domain.Solid;
 import com.acmeordersystem.domain.Service;
 
+import java.time.LocalDate;
+
 public class TestOrders {
 
 	/**
@@ -17,12 +19,12 @@ public class TestOrders {
 		// Order anotherAnvil = new Order(date3, 200, "Road Runner");
 		// System.out.println(anotherAnvil);
 
-		MyDate date1 = new MyDate((byte)1, (byte)20, (short)2008);
+		MyDate date1 = new MyDate((byte) 1, (byte) 20, (short) 2008);
 		Solid s1 = new Solid("Acme Anvil", 1668, 0.3, Good.UnitOfMeasureType.CUBIC_METER,
 				false, 500, 0.25, 0.3);
 		Order anvil = new Order(date1, 2000.00, "Wile E Coyote", s1, 10);
 
-		MyDate date2 = new MyDate((byte)4, (byte)10, (short)2008);
+		MyDate date2 = new MyDate((byte) 4, (byte) 10, (short) 2008);
 		Solid s2 = new Solid("Acme Balloon", 1401, 15, Good.UnitOfMeasureType.CUBIC_FEET,
 				false, 10, 5, 5);
 		Order balloons = new Order(date2, 1000.00, "Bugs Bunny", s2, 125);
@@ -48,12 +50,27 @@ public class TestOrders {
 		// Non valid quantity detection test
 		balloons.setQuantity(-200);
 
-		MyDate date3 = new MyDate((byte) 4, (byte) 10, (short)2008);
+		MyDate date3 = new MyDate((byte) 4, (byte) 10, (short) 2008);
 		Service s3 = new Service("Road Runner Eradication", 14, false);
 		Order birdEradication = new Order(date3, 20000, "Daffy Duck", s3, 1);
 		System.out.println("The total bill for: " + birdEradication + " is " + birdEradication.computeTotal());
 
-		Order.setRushable( ((orderDate, amount) -> amount > 1500) );
+		MyDate hammer = new MyDate((byte)9, (byte)20, (byte)2022);
+
+		Order.setRushable(((orderDate, amount) -> amount > 1500));
+
+		// If one month (or more) has placed since an order was created, it should be treated as a priority
+		Order.setRushable((orderDate, amount) -> {
+			// Create a LocalDate object for now
+			LocalDate now = LocalDate.now();
+			// Create a LocalDate object for orderDate
+			LocalDate orderDatePlus30 = LocalDate.of(orderDate.getYear(), orderDate.getMonth(), orderDate.getDay());
+			// Add one month to the orderDate
+			orderDatePlus30 = orderDatePlus30.plusMonths(1);
+			// If the current date is after the oderDate + 1 month
+			// Order is rushable
+			return now.isAfter(orderDatePlus30);
+		});
 
 		System.out.println("Anvil isPriorityOrder: " + anvil.isPriorityOrder()); // true
 		System.out.println("Balloons isPriorityOrder: " + balloons.isPriorityOrder()); // false

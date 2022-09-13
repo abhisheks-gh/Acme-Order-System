@@ -44,7 +44,8 @@ public class TestOrders {
 		balloons.computeTax();
 
 		LocalDate date3 = LocalDate.of(2008, 5, 20);
-		Good anvilOrder = new Solid("Anvil", 4, 3, Good.UnitOfMeasureType.CUBIC_FEET, false, 10, 3, 4);
+		Good anvilOrder = new Solid("Anvil", 4, 3, Good.UnitOfMeasureType.CUBIC_FEET,
+				false, 10, 3, 4);
 		Order anotherAnvil = new Order(date3, 200, "Wile E", anvilOrder, 10);
 		System.out.println(anotherAnvil);
 
@@ -66,7 +67,8 @@ public class TestOrders {
 		System.out.println("The total bill for: " + birdEradication + " is " + birdEradication.computeTotal());
 
 		LocalDate hammerDate = LocalDate.of(2022, 9, 5);
-		Solid hammerType = new Solid("Acme Hammer", 281, 0.3, UnitOfMeasureType.CUBIC_METER, false, 100, 0.25, 0.3);
+		Solid hammerType = new Solid("Acme Hammer", 281, 0.3, UnitOfMeasureType.CUBIC_METER,
+				false, 100, 0.25, 0.3);
 		Order hammer = new Order(hammerDate, 10.00, "Wile E Coyote", hammerType, 10);
 
 
@@ -74,7 +76,8 @@ public class TestOrders {
 			// Create a LocalDate object for now.
 			LocalDate now = LocalDate.now();
 			// Create a LocalDate object for the order date.
-			LocalDate orderDatePlus30 = LocalDate.of(orderDate.getYear(), orderDate.getMonth(), orderDate.getDayOfMonth());
+			LocalDate orderDatePlus30 = LocalDate.of(orderDate.getYear(), orderDate.getMonth(),
+					orderDate.getDayOfMonth());
 			// Add one month to the order date.
 			orderDatePlus30 = orderDatePlus30.plusMonths(1);
 			// If the current date is after the order date + one month,

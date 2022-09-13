@@ -2,8 +2,10 @@ package com.acmeordersystem.domain;
 
 import com.acmeordersystem.utils.MyDate;
 
+import java.time.LocalDate;
+
 public class Order {
-	private MyDate orderDate;
+	private LocalDate orderDate;
 	private double orderAmount = 0.00;
 
 	/** Discount offered as per the jobSize */
@@ -19,11 +21,11 @@ public class Order {
 
 	private static Rushable rushable;
 
-	public MyDate getOrderDate() {
+	public LocalDate getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(MyDate orderDate) { this.orderDate = orderDate; }
+	public void setOrderDate(LocalDate orderDate) { this.orderDate = orderDate; }
 
 	public double getOrderAmount() {
 		return orderAmount;
@@ -77,7 +79,7 @@ public class Order {
 		return orderAmount * Order.taxRate;
 	}
 
-	public Order(MyDate d, double amt, String c, Product p, int q) {
+	public Order(LocalDate d, double amt, String c, Product p, int q) {
 		orderDate = d;
 		orderAmount = amt;
 		customer = c;

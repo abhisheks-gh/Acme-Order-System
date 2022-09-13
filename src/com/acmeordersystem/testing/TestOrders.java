@@ -21,11 +21,13 @@ public class TestOrders {
 //        Order balloons = new Order(date2, 1000.00, "Bugs Bunny", "Balloon", 125);
 
 		LocalDate date1 = LocalDate.of(2016, 1, 1);
-		Solid s1 = new Solid("Acme Anvil", 1668, 0.3, Good.UnitOfMeasureType.CUBIC_METER, false, 500, 0.25, 0.3);
+		Solid s1 = new Solid("Acme Anvil", 1668, 0.3, Good.UnitOfMeasureType.CUBIC_METER,
+				false, 500, 0.25, 0.3);
 		Order anvil = new Order(date1, 2000.00, "Wile E Coyote", s1, 10);
 
 		LocalDate date2 = LocalDate.of(2008, 4, 10);
-		Solid s2 = new Solid("Acme Balloon", 1401, 15, Good.UnitOfMeasureType.CUBIC_FEET, false, 10, 5, 5);
+		Solid s2 = new Solid("Acme Balloon", 1401, 15, Good.UnitOfMeasureType.CUBIC_FEET,
+				false, 10, 5, 5);
 		Order balloons = new Order(date2, 1000.00, "Bugs Bunny", s2, 125);
 
 		System.out.println(anvil);
@@ -63,7 +65,7 @@ public class TestOrders {
 		Order birdEradication = new Order(date4, 20000, "Daffy Duck", s3, 1);
 		System.out.println("The total bill for: " + birdEradication + " is " + birdEradication.computeTotal());
 
-		LocalDate hammerDate = LocalDate.of(2017, 3, 1);
+		LocalDate hammerDate = LocalDate.of(2022, 9, 5);
 		Solid hammerType = new Solid("Acme Hammer", 281, 0.3, UnitOfMeasureType.CUBIC_METER, false, 100, 0.25, 0.3);
 		Order hammer = new Order(hammerDate, 10.00, "Wile E Coyote", hammerType, 10);
 

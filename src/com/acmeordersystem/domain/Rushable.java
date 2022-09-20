@@ -1,9 +1,9 @@
 package com.acmeordersystem.domain;
 
-// import com.acmeordersystem.utils.MyDate;
+import com.acmeordersystem.utils.MyDate;
 
-import java.time.LocalDate;
+// import java.time.LocalDate;
 
 public interface Rushable {
-    public abstract boolean isRushable(LocalDate orderDate, double amount);
+    public abstract boolean isRushable(MyDate orderDate, double amount);
 }

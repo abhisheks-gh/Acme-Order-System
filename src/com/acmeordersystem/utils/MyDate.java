@@ -12,27 +12,36 @@ public class MyDate {
     private short year;
     private boolean leapYear = true;
 
-    // getters
+    private static MyDate[] holidays;
+
+    static {
+        holidays = new MyDate[6];
+
+        // New Year's Date: January 1
+        holidays[0] = new MyDate((byte)1, (byte)1, (short)2012);
+        // Memorials Day: May 5
+        holidays[1] = new MyDate((byte)5, (byte)30, (short)2012);
+        // Independence day: July 4
+        holidays[2] = new MyDate((byte)7, (byte)4, (short)2012);
+        // Labor Day: September 5
+        holidays[3] = new MyDate((byte)9, (byte)5, (short)2012);
+        // Thanksgiving: November 24
+        holidays[4] = new MyDate((byte)11, (byte)24, (short)2012);
+        // Christmas: December 25
+        holidays[5] = new MyDate((byte)12, (byte)25, (short)2012);
+    }
+
     public int getDay() { return day; }
 
-    public int getMonth() {
-        return month;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public boolean isLeapYear() {
-        return leapYear;
-    }
-
-    // setters
     /** Sets day and also check if day is ok. */
     public void setDay(int day) {
         if (valid(day, this.month, this.year)) {
             this.day = (byte)day;
         }
+    }
+
+    public int getMonth() {
+        return month;
     }
 
     /** Sets month and also check if month is ok. */
@@ -42,6 +51,10 @@ public class MyDate {
         }
     }
 
+    public int getYear() {
+        return year;
+    }
+
     /** Sets year and also check if year is ok. */
     public void setYear(short year) {
         if (valid(this.day, this.month, year)) {
@@ -49,9 +62,23 @@ public class MyDate {
         }
     }
 
+    public boolean isLeapYear() {
+        return leapYear;
+    }
+
     /** Sets boolean value to 'leapYear'. */
     public void setLeapYear(boolean leapYear) {
         this.leapYear = leapYear;
+    }
+
+    public MyDate[] getHolidays() { return holidays; }
+
+    /** Lists all holidays */
+    public static void listHolidays() {
+        System.out.println("The holidays are: ");
+        for (int i = 0; i < holidays.length; i++) {
+            System.out.println(holidays[i]);
+        }
     }
 
      /**

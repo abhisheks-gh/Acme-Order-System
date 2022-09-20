@@ -3,9 +3,11 @@ package com.acmeordersystem.domain;
 import com.acmeordersystem.utils.MyDate;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import com.acmeordersystem.utils.MyDate;
 
 public class Order {
-	private LocalDate orderDate;
+	private MyDate orderDate;
 	private double orderAmount = 0.00;
 
 	/** Discount offered as per the jobSize */
@@ -21,11 +23,14 @@ public class Order {
 
 	private static Rushable rushable;
 
-	public LocalDate getOrderDate() {
-		return orderDate;
-	}
+	public MyDate getOrderDate() { return orderDate; }
 
-	public void setOrderDate(LocalDate orderDate) { this.orderDate = orderDate; }
+	public void setOrderDate(MyDate orderDate) {
+		if (isHoliday(orderDate)) {
+			System.out.println("Order date, " + orderDate + ", cannot be set to a holiday!");
+		}
+		this.orderDate = orderDate;
+	}
 
 	public double getOrderAmount() {
 		return orderAmount;
@@ -79,8 +84,8 @@ public class Order {
 		return orderAmount * Order.taxRate;
 	}
 
-	public Order(LocalDate d, double amt, String c, Product p, int q) {
-		orderDate = d;
+	public Order(MyDate d, double amt, String c, Product p, int q) {
+		setOrderDate(d);
 		orderAmount = amt;
 		customer = c;
 		product = p;
@@ -96,7 +101,7 @@ public class Order {
         return quantity + " ea. " + product + " for " + customer;
 	}
 
-	// returns jobSize depending on the quantity of order
+	/** returns jobSize depending on the quantity of order */
 	public char jobSize() {
 		if (quantity <= 25)
 			jobSize = 'S';				// Small
@@ -142,6 +147,16 @@ public class Order {
 			priorityOrder = rushable.isRushable(orderDate, orderAmount);
 		}
 		return priorityOrder;
+	}
+
+	/** Checks if the proposed order date is a holiday or not */
+	private boolean isHoliday(MyDate proposedDate) {
+		boolean result = false;
+		for (MyDate holiday : MyDate.getHolidays()) {
+			if (holiday.equals(proposedDate))
+				result = true;
+		}
+		return result;
 	}
 
 }

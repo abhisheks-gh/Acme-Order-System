@@ -71,7 +71,7 @@ public class MyDate {
         this.leapYear = leapYear;
     }
 
-    public MyDate[] getHolidays() { return holidays; }
+    public static MyDate[] getHolidays() { return holidays; }
 
     /** Lists all holidays */
     public static void listHolidays() {

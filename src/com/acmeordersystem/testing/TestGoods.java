@@ -6,6 +6,7 @@ import com.acmeordersystem.domain.Solid;
 import com.acmeordersystem.domain.Good.UnitOfMeasureType;
 
 public class TestGoods {
+
 	public static void main(String[] args) {
 		Liquid glue = new Liquid("Acme Glue", 2334, 4,
 				UnitOfMeasureType.LITER, false, 15, 6);
@@ -37,5 +38,19 @@ public class TestGoods {
 				anvil.canShipViaPostOffice());
 		System.out.println(paint + " can ship via Post office?" +
 				paint.canShipViaPostOffice());
+
+		// System.out.println(Good.getCatalog());
+		// removed product: Paint to because of some flaws
+		Good.getCatalog().remove(1);
+
+		Solid toaster = new Solid("Acme Toaster", 1755, 0.75,
+				UnitOfMeasureType.CUBIC_FEET, false, 1.0, 1.0, 1.0);
+		Good.getCatalog().add(toaster);
+		Good.getCatalog().add(toaster);
+		System.out.println();
+		System.out.println(Good.getCatalog());
+		System.out.println();
+		System.out.println("Flammable products: " + Good.flammablesList());
 	}
+
 }

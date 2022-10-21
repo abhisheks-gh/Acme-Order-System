@@ -9,7 +9,7 @@ import java.util.Iterator;
 /** Contains descriptive fields of placed order and methods use to perform operations on them
  *  Template for the subclasses Solid and Liquid
  * */
-public abstract class Good implements Product {
+public abstract class Good implements Product, Comparable<Good> {
     public enum UnitOfMeasureType { LITER, GALLON, CUBIC_METER, CUBIC_FEET }
     private String name;
     private int modelNumber;
@@ -18,9 +18,9 @@ public abstract class Good implements Product {
     private boolean flammable = true;
     private double weightPerUofM;
 
-    private static List catalog;
+    private static List<Good> catalog;
 
-    public static List getCatalog() { return catalog; }
+    public static List<Good> getCatalog() { return catalog; }
 
     static {
         Liquid glue = new Liquid("Acme Glue", 2334, 4, UnitOfMeasureType.LITER, false,
@@ -47,7 +47,7 @@ public abstract class Good implements Product {
         Liquid oil = new Liquid("Acme Oil", 4275, 1.0, UnitOfMeasureType.CUBIC_METER,
                 true, 1.5, 0.25);
 
-        catalog = new ArrayList();
+        catalog = new ArrayList<Good>();
         catalog.add(glue);
         catalog.add(paint);
         catalog.add(anvil);
@@ -141,15 +141,19 @@ public abstract class Good implements Product {
         }
     }
 
-    public static Set flammablesList() {
-        Set flammables = new HashSet();
-        Iterator i = getCatalog().iterator();
+    public static Set<Good> flammablesList() {
+        Set<Good> flammables = new HashSet<Good>();
+        Iterator<Good> i = Good.getCatalog().iterator();
         while (i.hasNext()) {
-            Good x = (Good) i.next();
+            Good x = i.next();
             if (x.isFlammable())
                 flammables.add(x);
         }
         return flammables;
+    }
+
+    public int compareTo(Good o) {
+        return getName().compareTo(o.getName());
     }
 
 }

@@ -1,6 +1,7 @@
 package com.acmeordersystem.domain;
 
 import com.acmeordersystem.utils.MyDate;
+import com.acmeordersystem.utils.HolidayOrdersNotAllowedException;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -25,9 +26,10 @@ public class Order {
 
 	public MyDate getOrderDate() { return orderDate; }
 
-	public void setOrderDate(MyDate orderDate) {
+	public void setOrderDate(MyDate orderDate) throws HolidayOrdersNotAllowedException {
 		if (isHoliday(orderDate)) {
 			System.out.println("Order date, " + orderDate + ", cannot be set to a holiday!");
+			throw new HolidayOrdersNotAllowedException(orderDate);
 		}
 		this.orderDate = orderDate;
 	}
@@ -85,7 +87,16 @@ public class Order {
 	}
 
 	public Order(MyDate d, double amt, String c, Product p, int q) {
-		setOrderDate(d);
+		/** Calling System.exit(0) is rarely an appropriate way to handle an exception.
+		 	Handling an exception usually requires the exception to be logged, informing the user
+		 	of the issue, and then seeking appropriate action from the user (in this case perhaps
+		 	picking a new order date).
+		 */
+		try {
+			setOrderDate(d);
+		} catch (HolidayOrdersNotAllowedException e) {
+			System.out.println("The order date for an order cannot be a holiday! Application closing...");
+		}
 		orderAmount = amt;
 		customer = c;
 		product = p;

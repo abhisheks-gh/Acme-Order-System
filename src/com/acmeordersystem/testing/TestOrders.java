@@ -47,10 +47,10 @@ public class TestOrders {
 						+ balloons.computeTotal());
 
 		MyDate date3 = new MyDate((byte)1,(byte)1,(short) 2012);
-
 		Service s3 = new Service("Road Runner Eradication", 14, false);
 		Order birdEradication = new Order(date3, 20000, "Daffy Duck", s3, 1);
-		System.out.println("The total bill for: " + birdEradication
-				+ " is " + birdEradication.computeTotal());
+		// System.out.println("The total bill for: " + birdEradication
+		//		+ " is " + birdEradication.computeTotal());
 	}
+
 }

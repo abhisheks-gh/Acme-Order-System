@@ -1,9 +1,14 @@
 package com.acmeordersystem.testing;
 
+import java.util.Collections;
+import java.util.List;
+
 import com.acmeordersystem.domain.Good;
 import com.acmeordersystem.domain.Liquid;
 import com.acmeordersystem.domain.Solid;
 import com.acmeordersystem.domain.Good.UnitOfMeasureType;
+
+import javax.xml.catalog.Catalog;
 
 public class TestGoods {
 
@@ -51,6 +56,20 @@ public class TestGoods {
 		System.out.println(Good.getCatalog());
 		System.out.println();
 		System.out.println("Flammable products: " + Good.flammablesList());
+		System.out.println();
+
+		Collections.sort( (List<Good>) Good.getCatalog() );
+		System.out.println(Good.getCatalog());
+		System.out.println();
+
+		// Binary search for glue in sorted Catalog
+		System.out.println( "Found " + "Acme Glue-2334 (liquid) 452.3893421169302 LITER "
+				+ "in the Catalog"
+				+ " at location: " + Collections.binarySearch(Good.getCatalog(), glue) );
+
+		// If not found then it returns: (-index -1) where index is the position where
+		// the element would be inserted in the sorted array.
+		// System.out.println( Collections.binarySearch(Good.getCatalog(), paint) );
 	}
 
 }
